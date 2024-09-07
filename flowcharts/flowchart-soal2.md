@@ -1,34 +1,28 @@
 ```mermaid
 flowchart TD
-    A[Start] --> B[Initialize Variables]
-    B --> C[Ali Travel Log Calculation]
-    C --> D[While aliTotalDistance <= distanceInMeters]
-    D --> E[Check aliTotalSecond]
-    E --> F[Update speedAliMps if aliTotalSecond != 0]
-    F --> G[Update aliTotalDistance]
-    G --> H[Create TravelLog and Add to aliTravelLog]
-    H --> I[Check Loop Condition]
-    I -->|True| J[Exit Loop]
-    I -->|False| D
-    J --> K[Print Ali Travel Log]
-    K --> L[Badu Travel Log Calculation]
-    L --> M[While baduTotalDistance <= distanceInMeters]
-    M --> N[Update baduTotalDistance]
-    N --> O[Create TravelLog and Add to baduTravelLog]
-    O --> P[Check Loop Condition]
-    P -->|True| Q[Exit Loop]
-    P -->|False| M
-    Q --> R[Print Badu Travel Log]
-    R --> S[Find Cross Path Time]
-    S --> T[For each b in baduTravelLog]
-    T --> U[For each a in aliTravelLog]
-    U --> V[Check if delta distance meter < 0.1]
-    V -->|True| W[Update baduDistanceRemaining and crossPathInSecond]
-    W --> X[Exit Inner Loop]
-    V -->|False| U
-    X --> Y[Exit Outer Loop]
-    Y --> Z[Calculate Total Cross Path Time in Seconds]
-    Z --> AA[Convert Seconds to HH:MM:SS Format]
-    AA --> AB[Print Result]
-    AB --> AC[End]
+    A[Mulai] --> B[Inisialisasi jarak dan kecepatan]
+    B --> C[Hitung perjalanan Ali]
+    C --> D[Ali bergerak dari A ke B]
+    D --> E{Ali telah mencapai jarak 1000 m?}
+    E -- Tidak --> F[Update kecepatan Ali]
+    F --> G[Tambahkan jarak tempuh Ali]
+    G --> H[Catat log perjalanan Ali]
+    H --> I[Ulangi perhitungan]
+    E -- Ya --> J[Tampilkan log perjalanan Ali]
+
+    J --> K[Hitung perjalanan Badu]
+    K --> L[Badu bergerak dari B ke A]
+    L --> M{Badu telah mencapai jarak 1000 m?}
+    M -- Tidak --> N[Tambahkan jarak tempuh Badu]
+    N --> O[Catat log perjalanan Badu]
+    O --> P[Ulangi perhitungan]
+    M -- Ya --> Q[Tampilkan log perjalanan Badu]
+
+    Q --> R[Temukan waktu pertemuan]
+    R --> S{Ali dan Badu bertemu?}
+    S -- Ya --> T[Hitung sisa jarak Badu]
+    T --> U[Tampilkan waktu pertemuan dan sisa jarak]
+    S -- Tidak --> V[Tunggu lebih lama]
+    V --> R
+    U --> X[Selesai]
 ```
